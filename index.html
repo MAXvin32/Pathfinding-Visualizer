@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Visualiser</title>
+	<link rel="stylesheet" href="hint.min.css" />
+	<link rel="stylesheet" type="text/css" href="Code/style/maze_creation.css">
+	<link rel="stylesheet" type="text/css" href="Code/style/rest.css">
+	<link rel="stylesheet" type="text/css" href="Code/style/animation/move_squre_animation.css">
+	<link rel="stylesheet" type="text/css" href="Code/style/animation/visited_square_animation.css">
+	<link rel="stylesheet" type="text/css" href="Code/style/animation/wall_creation_animation.css">
+	<link rel="stylesheet" type="text/css" href="Code/style/animation/min_node_square.css">
+	<link rel="stylesheet" type="text/css" href="Code/style/animation/weight_add_animation.css">
+	<link rel="stylesheet" type="text/css" href="Code/style/animation/weight_add_square_t_animation.css">
+	<link rel="stylesheet" type="text/css" href="Code/style/animation/weight_add_square_visited_animation.css">
+	<link rel="stylesheet" type="text/css" href="Code/style/animation/tool_tip.css">
+
+	<!-- Css bootstrap -->
+	<link rel="stylesheet"  href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+	<!-- heading font -->
+	<link href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@464;700&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Teko:wght@700&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet">
+
+	<!-- fomantic ui -->
+	<!-- You MUST include jQuery before Fomantic -->
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.js"></script>
+
+	<!-- You MUST include jQuery before Fomantic -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.js"></script>
+
+	<!-- You MUST include jQuery before Fomantic -->
+	<script src="https://unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://unpkg.com/fomantic-ui@2.8.7/dist/semantic.min.css">
+	<script src="https://unpkg.com/fomantic-ui@2.8.7/dist/semantic.min.js"></script>
+
+</head>
+<body id="body_bg">
+
+
+	<div class="container" >
+	<h1  id = "heading_h" class="row justify-content-around m-2 mb-0 display-4" >VISUALGRAPH</h1>
+
+	<div id="all_button " class="row justify-content-around">
+		
+	<button id="again" class="ui orange button image label"><img src="Code/style/animation/image/again.svg" alt="" >AGAIN</button>
+	<button id="path_remove" class="ui green button ">PATH REMOVE</button>
+	<button id="wall_creation" class="ui black button">WALL</button>
+	<button id="startsquare" class="ui blue button image label"><img src="Code/style/animation/image/blur_circular-24px.svg" alt="" >START</button>
+	<button id="endsquare" class="ui violet button image label"><img src="Code/style/animation/image/filter_tilt_shift-24px.svg" alt="" class="button_img" >END</button>
+	<button id="weight_add" class="ui purple button">WEIGHT ( +5 )</button>
+	<button id="weight_add_3" class="ui pink button">WEIGHT ( +3 )</button>
+	
+	<div class="dropdown">
+	  <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		TRAPS
+	  </button>
+	  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+	  		<button id="trap" class="btn btn-dark  dropdown-item">RANDOM WALL AND WEIGHTS</button>
+	  		<button id="trap_wall" class="btn btn-dark  dropdown-item">RANDOM WALL</button>
+	  		<button id="trap_weight" class="btn btn-dark  dropdown-item">RANDOM WEIGHT</button>
+			<button id="trap1" class="btn btn-dark  dropdown-item">TRAPS</button>
+	  </div>
+	</div>
+
+	<div class="dropdown">
+		<button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		  SPEED
+		</button>
+		<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+				<button id="fast" class="btn btn-dark  dropdown-item">FAST</button>
+				<button id="medium" class="btn btn-dark  dropdown-item">MEDIUM</button>
+				<button id="slow" class="btn btn-dark  dropdown-item">SLOW</button>
+		</div>
+	</div>
+	
+	<div class="dropdown">
+	  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		ALGORITHMS
+	  </button>
+	  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+	  		<button id='dfs' 		class="btn btn-primary dropdown-item ">DFS</button>
+			<button id='bfs_new'  	class="btn btn-success dropdown-item">BFS</button>
+			<button id='dijkstra'	class="btn btn-danger dropdown-item">DIJKSTRA ALGORITHM</button>
+			<button id='astar'		class="btn btn-danger dropdown-item">A* ALGORITHM</button>
+			<button id='bfs_path'	class="btn btn-danger dropdown-item">BFS PATH</button>
+	  </div>
+	</div>
+	
+	<button id="animate" class="btn btn-danger ">ANIMATE</button>
+	</div>
+
+	</div>
+	
+	<div id="maze" ></div>
+	<div id="end_distance" class="row justify-content-around m-2 mb-0 display-4" ></div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+	<script type="text/javascript" src="Code/maze/maze_creation.js"></script>
+	<script type="text/javascript" src="Code/maze/maze_array_try.js"></script>
+	<script type="text/javascript" src="Code/maze/maze_wall_creation.js"></script>
+	<script type="text/javascript" src="Code/maze/weight_add.js"></script>
+	<script type="text/javascript" src="Code/maze/weight_add_3.js"></script>
+	<script type="text/javascript" src="Code/maze/maze_start_end_points.js"></script>
+	<!--  -->
+	<script type="text/javascript" src="Code/maze/speed.js"></script>
+	<script type="text/javascript" src="Code/maze/animation_algo_visit.js"></script>
+	<script type="text/javascript" src="Code/maze/animation_min_node_path.js"></script>
+	<script type="text/javascript" src="Code/maze/animate_button.js"></script>
+	<!--  -->
+	<script type="text/javascript" src="Code/maze/path_algorithms/dfs.js"></script>
+	<script type="text/javascript" src="Code/maze/path_algorithms/bfs_new.js"></script>
+	<script type="text/javascript" src="Code/maze/path_algorithms/dijkstra.js"></script>
+	<script type="text/javascript" src="Code/maze/path_algorithms/astar.js"></script>
+	<script type="text/javascript" src="Code/maze/path_algorithms/bfs_path.js"></script>
+	<script type="text/javascript" src="Code/maze/again.js"></script>
+	<script type="text/javascript" src="Code/maze/algo_remove.js"></script>
+	<script type="text/javascript" src="Code/maze/traps/basic_random_trap.js"></script>
+	<script type="text/javascript" src="Code/maze/traps/basic_random_wall_trap.js"></script>
+	<script type="text/javascript" src="Code/maze/traps/basic_random_weight_trap.js"></script>
+	<script type="text/javascript" src="Code/maze/traps/trap1.js"></script>
+
+
+	<!-- JS, Popper.js, and jQuery  Bootstrap -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+</body>
+</html>
